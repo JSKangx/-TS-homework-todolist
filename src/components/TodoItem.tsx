@@ -5,7 +5,13 @@ type TodoItemProps = TodoType;
 export default function TodoItem({ id, text, completed }: TodoItemProps) {
   return (
     <>
-      <li>{text}</li>
+      <div>
+        <li>
+          {text}
+          <button>Completed</button>
+          <button>Delete</button>
+        </li>
+      </div>
     </>
   );
 }
