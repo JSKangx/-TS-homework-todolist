@@ -28,15 +28,19 @@ function App() {
 
   // todoItem 추가하는 함수
   function onCreateTodo() {
-    // 새로운 todoItem
-    const newTodo: TodoType = {
-      id: crypto.randomUUID(),
-      text,
-      completed: false,
-    };
-    // 상태 업데이트
-    setTodoList((prev) => [newTodo, ...prev]);
-    setText("");
+    if (text.length > 0) {
+      // 새로운 todoItem
+      const newTodo: TodoType = {
+        id: crypto.randomUUID(),
+        text,
+        completed: false,
+      };
+      // 상태 업데이트
+      setTodoList((prev) => [newTodo, ...prev]);
+      setText("");
+    } else {
+      alert("할 일을 입력해주세요.");
+    }
   }
 
   // todoItem 삭제하는 함수
