@@ -37,6 +37,11 @@ function App() {
     setText("");
   }
 
+  // todoItem 삭제하는 함수
+  function onDeleteTodo(id: TodoType["id"]) {
+    setTodoList((prev) => prev.filter((item) => item.id !== id));
+  }
+
   return (
     <>
       <h1>Todo List</h1>
@@ -48,7 +53,7 @@ function App() {
       >
         Add Todo
       </button>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onDeleteTodo={onDeleteTodo} />
     </>
   );
 }
