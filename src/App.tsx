@@ -8,6 +8,8 @@ export type TodoType = {
   completed: boolean;
 };
 
+export type ToggleTodo = Omit<TodoType, "text">;
+
 function App() {
   // todoList 상태 관리
   const [todoList, setTodoList] = useState<TodoType[]>([
@@ -42,6 +44,22 @@ function App() {
     setTodoList((prev) => prev.filter((item) => item.id !== id));
   }
 
+  // todoItem completed 토글 함수
+  function onToggleTodo({ id, completed }: ToggleTodo) {
+    setTodoList((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            completed: !completed,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
+
   return (
     <>
       <h1>Todo List</h1>
@@ -53,7 +71,11 @@ function App() {
       >
         Add Todo
       </button>
-      <TodoList todoList={todoList} onDeleteTodo={onDeleteTodo} />
+      <TodoList
+        todoList={todoList}
+        onDeleteTodo={onDeleteTodo}
+        onToggleTodo={onToggleTodo}
+      />
     </>
   );
 }
